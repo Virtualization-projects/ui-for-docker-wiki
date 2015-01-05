@@ -1,9 +1,11 @@
 ## Run dockerui on your host machine
 
 Quickstart:
+To create a new image and start a container with it:
 ```
 make build run
 ```
+Or run natively on your computer:
 ```
 go build dockerui.go
 ./dockerui
