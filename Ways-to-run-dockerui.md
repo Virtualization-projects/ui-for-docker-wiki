@@ -1,5 +1,9 @@
 ## Run dockerui on your host machine
 
+Quickstart:
+```
+make build run
+```
 ```
 go build dockerui.go
 ./dockerui
