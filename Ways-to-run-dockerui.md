@@ -8,19 +8,19 @@ make build run
 Or run natively on your computer:
 ```
 go build dockerui.go
-./dockerui
+./dockerui -a dist
 ```
 Note: Dockerui looks for the docker daemon on `/var/run/docker.sock` by default, use `-e` to override this. 
 ```
-./dockerui -e /var/run/docker.sock
+./dockerui -a dist -e /var/run/docker.sock
 or...
-./dockerui -e http://192.168.59.103:2376
+./dockerui -a dist -e http://192.168.59.103:2376
 ```
 Dockerui does not support TLS, as a result users with Docker 1.3.0 or greater installed will not be able to use tcp ports with the `-e` option.
 
 You can change the default port using `-p`:
 ```
-./dockerui -p 0.0.0.0:9001
+./dockerui -a dist -p 0.0.0.0:9001
 ```
 
 ## Run docker with source code in a mounted volume
