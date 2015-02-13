@@ -18,6 +18,11 @@ or...
 ```
 Dockerui does not support TLS, as a result users with Docker 1.3.0 or greater installed will not be able to use tcp ports with the `-e` option.
 
+You can change the default port using `-p`:
+```
+./dockerui -p 0.0.0.0:9001
+```
+
 ## Run docker with source code in a mounted volume
 
 This is the fastest way to develop with the HTML, CSS, and Javascript portion of dockerui.
