@@ -15,6 +15,7 @@ In no particular order, these are things that the Docker Remote API exposes that
 * Exec
 
 ## Other
+* Complete transition to Bootstrap 3
 * Add themes other than default Bootstrap
 * Clean up filesystem changes display
 * Clean up image history display
