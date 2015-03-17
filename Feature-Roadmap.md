@@ -3,12 +3,13 @@ In no particular order, these are things that the Docker Remote API exposes that
 
 * ~~Container creation options~~
 * top
-* Container Restart
+* Container Restart (currently available in list view but not on individual container views)
 * Attach
 * Copy from container
 * Create image
 * Push to registry
 * Search registry
+* Pull from registry
 * Build from Dockerfile (or stdin?)
 * Commit container to image
 * Events
