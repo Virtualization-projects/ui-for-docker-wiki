@@ -1,7 +1,7 @@
 ## New features
 In no particular order, these are things that the Docker Remote API exposes that DockerUI has not implemented yet:
 
-* Container creation options
+* ~~Container creation options~~
 * top
 * Container Restart
 * Attach
@@ -13,6 +13,7 @@ In no particular order, these are things that the Docker Remote API exposes that
 * Commit container to image
 * Events
 * Exec
+* Rename containers
 
 ## Other
 * Complete transition to Bootstrap 3
