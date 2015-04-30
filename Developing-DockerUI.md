@@ -1,6 +1,10 @@
-Clone the repo, then run the following commands to get DockerUI running locally:
+First, make sure you have Docker installed on your machine. Instructions for this are available [on the Docker website](https://docs.docker.com/installation/).
+
+Clone the repo and run the following commands to get DockerUI running locally:
 ```
-make install
+git clone https://github.com/crosbymichael/dockerui.git
+cd dockerui
+make install # May need to use sudo
 grunt # Run tests
 make build-release # Create the dockerui binary
 make build run # (re)build image and container
