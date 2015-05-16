@@ -3,7 +3,7 @@ In no particular order, these are things that the Docker Remote API exposes that
 
 * ~~Container creation options~~
 * ~~top~~
-* Container Restart (currently available in list view but not on individual container views)
+* ~~Container Restart (currently available in list view but not on individual container views)~~
 * Attach
 * Copy from container
 * Create image
