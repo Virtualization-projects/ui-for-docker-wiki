@@ -3,6 +3,8 @@
 Quickstart:
 To create a new image and start a container with it:
 ```
+# Builds DockerUI binary using a containerized Golang builder
+make build-release
 make build run
 ```
 Or run natively on your computer:
