@@ -11,7 +11,7 @@ cd dist
 ./dockerui
 
 ```
-And in another terminal run `grunt watch` to automatically rebuild the Angular app when source files change.`
+And in another terminal run `grunt watch` to automatically rebuild the Angular app when source files change.
 Note: Dockerui looks for the docker daemon on `/var/run/docker.sock` by default, use the `-e` flag to override this. 
 ```
 ./dockerui -e /var/run/docker.sock
