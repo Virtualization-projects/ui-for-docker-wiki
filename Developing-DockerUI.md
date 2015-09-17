@@ -7,7 +7,7 @@ git clone https://github.com/crosbymichael/dockerui.git
 cd dockerui
 npm install
 grunt  # Run unit tests
-grunt run-dev
+grunt run-dev  # Build and start an auto-reloading DockerUI container
 ```
 
 ## Convenient Grunt targets
