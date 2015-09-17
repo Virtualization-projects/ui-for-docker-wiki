@@ -1,13 +1,15 @@
-## Run DockerUI on a Docker host (Common for Boot2Docker on OS X)
+## Run DockerUI as a container on a Docker host (Common for Boot2Docker on OS X)
 To create a new image and start a container with it:
 ```
 grunt run  # or run-dev for auto-reloading when source files change
 ```
-Or run natively on your computer:
+
+## run natively on your computer
 ```
 grunt build
 cd dist
-./dockerui
+./dockerui &
+grunt watch
 ```
 Note: Dockerui looks for the docker daemon on `/var/run/docker.sock` by default, use the `-e` flag to override this. 
 ```
@@ -28,10 +30,6 @@ You can change the default port using `-p`:
 
 This is the fastest way to develop with the HTML, CSS, and Javascript portion of dockerui.
 
-- clone this repo to /path/to/dockerui and `cd` into that directory
-- in the `Dockerfile` change `ADD . /app/` to `VOLUME /app`
-- build the image : `docker build -t me/dockerui ./`
-- run the container with `/path/to/dockerui` binded to `/app`
 Use the following Dockerfile
 ```
 FROM scratch
@@ -49,6 +47,7 @@ docker run -d \
     -v /var/run/docker.sock:/docker.sock \
     me/dockerui \
     -e /docker.sock
+grunt watch
 ```
 
 ## Run under apache with mod_proxy
