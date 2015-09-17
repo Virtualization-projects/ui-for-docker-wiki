@@ -1,10 +1,10 @@
-## Run DockerUI as a container on a Docker host (Common for Boot2Docker on OS X)
+## Run DockerUI as a container on a Docker host (Boot2Docker on OS X)
 To create a new image and start a container with it:
 ```
 grunt run  # or run-dev for auto-reloading when source files change
 ```
 
-## run natively on your computer
+## Run natively on your computer
 ```
 grunt build
 cd dist
