@@ -25,7 +25,7 @@ You can change the default port using `-p`:
 ./dockerui -p 0.0.0.0:9001
 ```
 
-## Run docker with source code in a mounted volume
+## Run Docker with source code in a mounted volume
 
 > Warning: DockerUI uses http.FileServer which does not mix well with VirtualBox's volume sharing. If you use this approach you may have issues with the server not picking up changes to source files. The `grunt run-dev` approach is recommended for OS X users. 
 
@@ -51,12 +51,12 @@ docker run -d \
 grunt watch
 ```
 
-## Run under apache with mod_proxy
+## Run under Apache with mod_proxy
 
-- clone it into /var/www/dockerui
-- enable mod_proxy and the http_proxy handler
-- create a virtualhost
-- enable proxypass to pipe /dockerapi request to your docker host
+- clone it into `/var/www/dockerui`
+- enable `mod_proxy` and the http_proxy handler
+- create a `virtualhost`
+- enable `proxypass` to pipe `/dockerapi` request to your docker host
 
 ### VirtualHost
 
@@ -72,7 +72,7 @@ grunt watch
 
 ### mod_proxy
 
-Make sure that you have mod_proxy enabled
+Make sure that you have `mod_proxy` enabled
 
 ```
 $ ls -l /etc/apache2/mods-enabled/ |grep proxy
@@ -81,7 +81,7 @@ lrwxrwxrwx 1 root root 33 juil. 18 11:17 proxy_http.load -> ../mods-available/pr
 lrwxrwxrwx 1 root root 28 juil. 18 11:09 proxy.load -> ../mods-available/proxy.load
 ```
 
-If not and if you're on debian for instance : run `a2enmod proxy && a2enmod proxy_http`
+If not and if you're on Debian for instance : run `a2enmod proxy && a2enmod proxy_http`
 
 ### Docker host config
 
