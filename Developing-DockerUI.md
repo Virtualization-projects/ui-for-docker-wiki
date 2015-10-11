@@ -1,12 +1,14 @@
 ## Quickstart
 Make sure you have Docker installed on your machine. Instructions for this are available [on the Docker website](https://docs.docker.com/installation/).
+Also, you need to install nodejs, npm and grunt on your host machine.
+However, you do not need to install golang on your host machine. A dockerized golang compiler will be automatically downloaded to build the dockerui binary.
 
 Clone the repo and run the following commands to get DockerUI running locally:
 ```
 git clone https://github.com/crosbymichael/dockerui.git
 cd dockerui
 npm install
-grunt  # Run unit tests
+grunt  # Build dockerui binary, Run unit tests
 grunt run-dev  # Build and start an auto-reloading DockerUI container
 ```
 
