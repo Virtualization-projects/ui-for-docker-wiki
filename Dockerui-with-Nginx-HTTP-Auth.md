@@ -5,16 +5,6 @@ upstream dockerui {
 }
 ```
 
-```
-TCP and UNIX-domain sockets can be mixed.
-
-Example:
-
-upstream something {
-    server unix:/tmp/somethinginthesocket;
-}
-```
-
 Then here the sample vhost configuration : 
 
 ```
