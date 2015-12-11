@@ -39,7 +39,6 @@ server {
 
 ```
 
-Note the explicit http 1.1 support. By default nginx use http 1.0...
-Without this configuration, you get HTTP 500 errors.
+Note the explicit `proxy_http_version 1.1` and `proxy_set_header Connection "";`. By default nginx use http 1.0. Without these settings, you get HTTP 500 errors.
 
 This isn't in the documentation.
