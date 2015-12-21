@@ -1,3 +1,7 @@
+Note: The [examples/nginx-basic-auth](https://github.com/crosbymichael/dockerui/tree/master/examples/nginx-basic-auth) directory contains a complete example using docker-compose.
+
+---
+
 First add the upstream conf to your nginx configuration :
 ```
 upstream dockerui {
@@ -40,5 +44,3 @@ server {
 ```
 
 Note the explicit `proxy_http_version 1.1` and `proxy_set_header Connection "";`. By default nginx use http 1.0. Without these settings, you get HTTP 500 errors.
-
-This isn't in the documentation.
