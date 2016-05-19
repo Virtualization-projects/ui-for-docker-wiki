@@ -1,4 +1,4 @@
-## Run DockerUI as a container on a Docker host (Boot2Docker on OS X)
+## Run UI for Docker as a container on a Docker host (Boot2Docker or docker-machine on OS X)
 To create a new image and start a container with it:
 ```
 grunt run  # or run-dev for auto-reloading when source files change
@@ -8,28 +8,28 @@ grunt run  # or run-dev for auto-reloading when source files change
 ```
 grunt build
 cd dist
-./dockerui
+./ui-for-docker
 
 ```
 And in another terminal run `grunt watch` to automatically rebuild the Angular app when source files change.
-Note: Dockerui looks for the docker daemon on `/var/run/docker.sock` by default, use the `-e` flag to override this. 
+Note: UI for Docker looks for the docker daemon on `/var/run/docker.sock` by default, use the `-e` flag to override this. 
 ```
-./dockerui -e /var/run/docker.sock
+./ui-for-docker -e /var/run/docker.sock
 or...
-./dockerui -e http://192.168.59.103:2376
+./ui-for-docker -e http://192.168.59.103:2376
 ```
-Dockerui does not support TLS natively, as a result users with Docker 1.3.0 or greater installed will not be able to use tcp ports with the `-e` flag. See [DockerUI-with-TLS-encryption-and-client-authentication](https://github.com/crosbymichael/dockerui/wiki/DockerUI-with-TLS-encryption-and-client-authentication) for other ways to use TLS. 
+UI for Docker does not support TLS natively, as a result users with Docker 1.3.0 or greater installed will not be able to use tcp ports with the `-e` flag. See [DockerUI-with-TLS-encryption-and-client-authentication](https://github.com/crosbymichael/dockerui/wiki/DockerUI-with-TLS-encryption-and-client-authentication) for other ways to use TLS. 
 
 You can change the default port using `-p`:
 ```
-./dockerui -p 0.0.0.0:9001
+./ui-for-docker -p 0.0.0.0:9001
 ```
 
 ## Run Docker with source code in a mounted volume
 
-> Warning: DockerUI uses http.FileServer which does not mix well with VirtualBox's volume sharing. If you use this approach you may have issues with the server not picking up changes to source files. The `grunt run-dev` approach is recommended for OS X users. 
+> Warning: UI for Docker uses http.FileServer which does not mix well with VirtualBox's volume sharing. If you use this approach you may have issues with the server not picking up changes to source files. The `grunt run-dev` approach is recommended for OS X users. 
 
-This is the fastest way to develop with the HTML, CSS, and Javascript portion of dockerui.
+This is the fastest way to develop with the HTML, CSS, and Javascript portion of UI for Docker.
 
 Use the following Dockerfile
 ```
@@ -37,7 +37,7 @@ FROM scratch
 COPY dist /app
 EXPOSE 9000
 WORKDIR /app
-ENTRYPOINT ["dockerui"]
+ENTRYPOINT ["ui-for-docker"]
 ```
 And run with 
 ```
@@ -46,14 +46,14 @@ docker run -d \
     -p 9000:9000 \
     -v $(pwd)/dist:/app \
     -v /var/run/docker.sock:/docker.sock \
-    me/dockerui \
+    me/ui-for-docker \
     -e /docker.sock
 grunt watch
 ```
 
 ## Run under Apache with mod_proxy
 
-- clone it into `/var/www/dockerui`
+- clone it into `/var/www/ui-for-docker`
 - enable `mod_proxy` and the http_proxy handler
 - create a `virtualhost`
 - enable `proxypass` to pipe `/dockerapi` request to your docker host
@@ -63,7 +63,7 @@ grunt watch
 ```
 <VirtualHost *:80>
     ServerName docker.yourcompany
-    DocumentRoot /var/www/dockerui
+    DocumentRoot /var/www/ui-for-docker
     DirectoryIndex index.html
     ProxyPass /dockerapi/ http://127.0.0.01:4243/
     ProxyPassReverse /dockerapi/ http://127.0.0.1:4243/
