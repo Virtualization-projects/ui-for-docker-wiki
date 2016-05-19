@@ -1,6 +1,6 @@
 # Introduction
 
-The native DockerUI container does not support any form of encryption or security controls; however, if you already have TLS encryption between your Docker CLI and hosts, you can use the same set of certificates to both encrypt DockerUI traffic and provide client verification/authentication. This is done using Apache with mod_proxy and mod_ssl. These instructions should work with boot2docker's TLS configuration, although I haven't tested it yet.
+The native UI for Docker container does not support any form of encryption or security controls; however, if you already have TLS encryption between your Docker CLI and hosts, you can use the same set of certificates to both encrypt UI for Docker traffic and provide client verification/authentication. This is done using Apache with mod_proxy and mod_ssl. These instructions should work with boot2docker's TLS configuration, although I haven't tested it yet.
 
 # Setup steps
 
@@ -8,7 +8,7 @@ The native DockerUI container does not support any form of encryption or securit
 
 First, be sure your personal Docker client certificate (sometimes located in `~/.docker/cert.pem`) has been imported into your browser's certificate database. For Mac users on Chrome or Safari, you should import the certificate into your Mac's Keychain - this can be done by opening the .pem file with Keychain Access or with the command `security import ~/.docker/cert.pem -k ~/Library/Keychains/login.keychain`. For Firefox users, certificates can be managed in Preferences > Advanced > Certificates > View Certificates. Select the "Your Certificates" tab and click the "Import..." button. **Important:** Be sure that both your certificate and private key get imported!
 
-Next, issue a certificate from your Docker host's CA to be used by DockerUI's Apache server. This certificate will be used both to encrypt traffic between the client and DockerUI, as well as to encrypt and authenticate traffic proxied to the Docker host. Following this, you should have three files: `ca.pem` with the CA's certificate, `cert.pem` with the certificate for DockerUI, and `key.pem` with the private key corresponding to DockerUI's certificate. Create a fourth file named `cert_and_key.pem` that has `cert.pem` concatenated with `key.pem` - this will be used by Apache later on.
+Next, issue a certificate from your Docker host's CA to be used by UI for Docker's Apache server. This certificate will be used both to encrypt traffic between the client and UI for Docker, as well as to encrypt and authenticate traffic proxied to the Docker host. Following this, you should have three files: `ca.pem` with the CA's certificate, `cert.pem` with the certificate for UI for Docker, and `key.pem` with the private key corresponding to UI for Docker's certificate. Create a fourth file named `cert_and_key.pem` that has `cert.pem` concatenated with `key.pem` - this will be used by Apache later on.
 
 ## Apache setup
 
@@ -30,7 +30,7 @@ Create an Apache configuration file that enables SSL with client verification an
 
     <VirtualHost *:443>
       ServerAdmin webmaster@localhost
-      DocumentRoot /var/www/dockerui/dist
+      DocumentRoot /var/www/uifd/dist
       
       SSLEngine on
       SSLProtocol all -SSLv2 -SSLv3
@@ -84,32 +84,32 @@ Save this to a file (such as `000-default.conf`) and add it to your Dockerfile.
 
     COPY 000-default.conf /etc/apache2/sites-available/
 
-## DockerUI setup
+## UI for Docker setup
 
-The only step remaining is to build the DockerUI site and add it to /var/www/dockerui/dist in the Apache container. You can do this locally on your system (if you're already set up with node.js and grunt) and just copy the site into the container in your Dockerfile:
+The only step remaining is to build the UI for Docker site and add it to /var/www/uifd/dist in the Apache container. You can do this locally on your system (if you're already set up with node.js and grunt) and just copy the site into the container in your Dockerfile:
 
-    COPY dist /var/www/dockerui/dist/
+    COPY dist /var/www/ui-for-docker/dist/
 
 Or, you can build the site during the container build process with an extra Dockerfile RUN command:
 
     RUN apt-get install -y git nodejs npm \
         && ln -s /usr/bin/nodejs /usr/bin/node \
-        && git clone https://github.com/crosbymichael/dockerui /var/www/dockerui \
-        && cd /var/www/dockerui && make install && grunt build
+        && git clone https://github.com/kevana/ui-for-docker /var/www/ui-for-docker \
+        && cd /var/www/ui-for-docker && make install && grunt build
 
 (You should only do one of the two options above.)
 
 # Running the newly built container
 
-Be sure to mount the directory containing DockerUI's certs as a volume into the container at runtime, as well as exposing both ports 80 and 443. Also, it is recommended that you set the hostname of the container equal to the hostname users will be using to access the DockerUI site. 
+Be sure to mount the directory containing UI for Docker's certs as a volume into the container at runtime, as well as exposing both ports 80 and 443. Also, it is recommended that you set the hostname of the container equal to the hostname users will be using to access the UI for Docker site. 
 
 For example:
 
-    $ docker run -h docker.mydomain.internal --name dockerui \
-          -v /private/certs/dockerui:/certs \
+    $ docker run -h docker.mydomain.internal --name ui-for-docker \
+          -v /private/certs/ui-for-docker:/certs \
           -p 80:80 -p 443:443 \
-          myrepo/dockerui
+          myrepo/ui-for-docker
 
 # Troubleshooting
 
-`docker exec -ti dockerui bash` will let you browse around the filesystem to read logs; particularly those stored in `/var/log/apache2/access.log` and `/var/log/apache2/error.log`.
+`docker exec -ti ui-for-docker bash` will let you browse around the filesystem to read logs; particularly those stored in `/var/log/apache2/access.log` and `/var/log/apache2/error.log`.
