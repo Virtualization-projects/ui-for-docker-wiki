@@ -1,15 +1,15 @@
 ## Quickstart
 Make sure you have Docker installed on your machine. Instructions for this are available [on the Docker website](https://docs.docker.com/installation/).
 Also, you need to install nodejs, npm and grunt on your host machine.
-However, you do not need to install golang on your host machine. A dockerized golang compiler will be automatically downloaded to build the dockerui binary.
+However, you do not need to install golang on your host machine. A dockerized golang compiler will be automatically downloaded to build the ui-for-docker binary.
 
 Clone the repo and run the following commands to get DockerUI running locally:
 ```
-git clone https://github.com/crosbymichael/dockerui.git
-cd dockerui
+git clone https://github.com/kevana/ui-for-docker.git
+cd ui-for-docker
 npm install
-grunt  # Build dockerui binary, Run unit tests
-grunt run-dev  # Build and start an auto-reloading DockerUI container
+grunt  # Build ui-for-docker binary, Run unit tests
+grunt run-dev  # Build and start an auto-reloading UI for Docker container
 ```
 
 ## Convenient Grunt targets
@@ -31,4 +31,4 @@ Build and run a Docker image with the app.
 ### run-dev
 Build and run a Docker image with the app, watch source files and refresh on changes.
 
-The actual docker commands for `run` and `run-dev` are in the Gruntfile under the `shell` section, this is the place to make changes, like pointing at a different Docker host or changing the port that DockerUI is exposed on.
+The actual docker commands for `run` and `run-dev` are in the Gruntfile under the `shell` section, this is the place to make changes, like pointing at a different Docker host or changing the port that UI for Docker is exposed on.
