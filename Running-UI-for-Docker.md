@@ -18,7 +18,7 @@ Note: UI for Docker looks for the docker daemon on `/var/run/docker.sock` by def
 or...
 ./ui-for-docker -e http://192.168.59.103:2376
 ```
-UI for Docker does not support TLS natively, as a result users with Docker 1.3.0 or greater installed will not be able to use tcp ports with the `-e` flag. See [DockerUI-with-TLS-encryption-and-client-authentication](https://github.com/crosbymichael/dockerui/wiki/DockerUI-with-TLS-encryption-and-client-authentication) for other ways to use TLS. 
+UI for Docker does not support TLS natively, as a result users with Docker 1.3.0 or greater installed will not be able to use tcp ports with the `-e` flag. See [UI-for-Docker-with-TLS-encryption-and-client-authentication](https://github.com/kevana/ui-for-docker/wiki/UI-for-Docker-with-TLS-encryption-and-client-authentication) for other ways to use TLS. 
 
 You can change the default port using `-p`:
 ```
