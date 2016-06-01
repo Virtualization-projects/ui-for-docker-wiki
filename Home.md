@@ -1,4 +1,4 @@
-Welcome to the dockerui wiki!
+Welcome to the UI for Docker wiki!
 
 [How to use nginx auth with dockerui](//github.com/crosbymichael/dockerui/wiki/Dockerui-with-Nginx-HTTP-Auth)
 
