@@ -1,3 +1,5 @@
+Merge the latest code from feature branches into `master`, the tip of `master` is always the most recent code ready for release.
+
 Releases are tagged from the `dist` branch.
 
 1. Merge `master` into `dist`, pulling in all changes except the `.gitignore`.
