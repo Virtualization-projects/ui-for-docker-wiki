@@ -19,26 +19,23 @@ server {
         access_log /var/log/nginx/uifd.access.log main;
         error_log /var/log/nginx/uifd.error.log info;
 
-        location / {
- 
 
-                #basic auth
+        # Temporary fix, see #97
+        rewrite ^(/fonts/glyphicons-halflings-regular\..*)$  $scheme://$server_name/dockerui$1 permanent;
+
+        location /dockerui {
+
                 auth_basic            "UI for Docker";
                 auth_basic_user_file  /somewhere.htpasswd;
 
+                rewrite              /dockerui/(.*) /$1 break;
+                proxy_http_version   1.1;
+                proxy_set_header     Connection "";
+                proxy_redirect       off;
+                proxy_set_header     Host $host;
+                proxy_set_header     X-Forwarded-For $proxy_add_x_forwarded_for;
                 proxy_pass http://ui_for_docker;
-                #http 1.1 support...
-                proxy_http_version 1.1;
-                proxy_set_header Connection "";
-
-                proxy_redirect     off;
-                proxy_set_header   Host $host;
-                proxy_set_header   X-Real-IP $remote_addr;
-                proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-                proxy_set_header   X-Forwarded-Host $server_name;
-
         }
-        root /home/johndoe/www/;
 }
 
 ```
