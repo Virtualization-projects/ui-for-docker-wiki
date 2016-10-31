@@ -8,7 +8,10 @@ Releases are tagged from the `dist` branch.
 
 3. Tag the commit with the release version.
 
-4. Add the tag in the Docker Hub repo and kick off an image build.
+4. Create a new tag release in the [Docker Hub repo](https://hub.docker.com/r/uifd/ui-for-docker/~/settings/automated-builds/). (e.g. Type: `Tag`, Name: `v0.11.0`, Dockerfile Location: `/`, Docker Tag name: `0.11.0`. Make sure you click 'Save Changes'.
+
+
+5. Manually trigger build of the new release.
 
 ## Pre-Releases
 Between tagged releases, create a beta tag that is built from the head of the `dist` branch.
