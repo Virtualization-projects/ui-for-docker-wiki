@@ -32,3 +32,20 @@ Build and run a Docker image with the app.
 Build and run a Docker image with the app, watch source files and refresh on changes.
 
 The actual docker commands for `run` and `run-dev` are in the Gruntfile under the `shell` section, this is the place to make changes, like pointing at a different Docker host or changing the port that UI for Docker is exposed on.
+
+## Notes
+
+### bower
+Bower needs to be installed.
+
+npm install -g bower
+
+### grunt
+Grunt needs to be installed as well
+
+npm install -g grunt-cli
+
+### symlink for node
+If grunt does not run with an error about node is not executable, you may need to make a symlink like
+
+ln -s /usr/bin/nodejs /usr/sbin/node
